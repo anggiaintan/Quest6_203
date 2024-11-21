@@ -95,7 +95,22 @@ Image(
                     )
                 )
                 .fillMaxSize(),
-        )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ){
+                Text(text = "Pilih Mata Kuliah Peminatan", fontWeight = FontWeight.Bold)
+                Text(
+                    text = "Silahkan pilih mata kuliah yang Anda inginkan",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                )
+            }
+        }
 
     }
 
