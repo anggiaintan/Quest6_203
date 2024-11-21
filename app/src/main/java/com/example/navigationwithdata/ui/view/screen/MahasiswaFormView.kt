@@ -42,7 +42,7 @@ import com.example.navigationwithdata.R
 
 @Composable
 fun MahasiswaFormView(
-    onsSubmitButton: (MutableList<String>) -> Unit,
+    onSubmitButtonClicked: (MutableList<String>) -> Unit,
     onBackButtonClicked: () -> Unit,
 ) {
     var nama by remember {
@@ -54,7 +54,7 @@ fun MahasiswaFormView(
     var email by remember {
         mutableStateOf("")
     }
-    var listData: MutableList<String> = mutableListOf(nama, nim, email)
+    var listData: MutableList<String> = mutableListOf(nim, nama, email)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -65,12 +65,12 @@ fun MahasiswaFormView(
         Spacer(modifier = Modifier.padding(16.dp))
         Row(
             modifier = Modifier.padding(25.dp),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(id = R.drawable.umy),
-                contentDescription = "",
                 modifier = Modifier.size(90.dp),
+                painter = painterResource(id = R.drawable.umy),
+                contentDescription = ""
             )
             Spacer(modifier = Modifier.padding(start = 30.dp))
             Column {
@@ -78,7 +78,7 @@ fun MahasiswaFormView(
                     text = "Universitas Muhammadiyah Yogyakarta",
                     color = Color.Red,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 19.sp,
+                    fontSize = 19.sp
                 )
                 Text(
                     text = "Unggul dan Islami",
@@ -118,7 +118,7 @@ fun MahasiswaFormView(
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(50.dp),
+
                     value = nim,
                     onValueChange = { nim = it },
                     label = { Text(text = "Nomor Induk Mahasiswa") },
@@ -140,7 +140,7 @@ fun MahasiswaFormView(
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(50.dp),
+
                     value = nama,
                     onValueChange = { nama = it },
                     label = { Text(text = "Masukkan nama Anda") },
@@ -161,7 +161,7 @@ fun MahasiswaFormView(
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(50.dp),
+
                     value = email,
                     onValueChange = { email = it },
                     label = { Text(text = "Masukkan email Anda") },
@@ -185,7 +185,7 @@ fun MahasiswaFormView(
                     Button(onClick = { onBackButtonClicked() }) {
                         Text(text = "Kembali")
                     }
-                    Button(onClick = { onsSubmitButton(listData) }) {
+                    Button(onClick = { onSubmitButtonClicked(listData) }) {
                         Text(text = "Simpan")
                     }
                 }

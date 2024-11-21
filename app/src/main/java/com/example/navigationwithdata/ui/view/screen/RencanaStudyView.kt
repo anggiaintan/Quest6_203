@@ -22,8 +22,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,9 +33,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.data.EmptyGroup.data
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.navigationwithdata.R
 import com.example.navigationwithdata.data.MataKuliah
 import com.example.navigationwithdata.data.RuangKelas
@@ -44,16 +46,17 @@ import com.example.navigationwithdata.ui.view.widget.DynamicSelectTextField
 fun RencanaStudyView(
     mahasiswa: Mahasiswa,
     onSubmitButtonClicked: (MutableList<String>) -> Unit,
-    onBackButtonClicked: () -> Unit
+    onBackButtonClicked: () -> Unit,
+    navController: NavHostController
 ){
-var chosenDropDown by remember {
+var chosenDropdown by remember {
     mutableStateOf("")
 }
     var checked by remember {mutableStateOf(false)}
     var pilihanKelas by remember {
         mutableStateOf("")
     }
-    var listData: MutableList<String> = mutableListOf(chosenDropDown, pilihanKelas)
+    var listData: MutableList<String> = mutableListOf(chosenDropdown, pilihanKelas)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -118,11 +121,11 @@ Image(
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
                 DynamicSelectTextField(
-                    selectedValue = chosenDropDown,
+                    selectedValue = chosenDropdown,
                     options = MataKuliah.options,
                     label = "Mata Kuliah",
                     onValueChangedEvent = {
-                        chosenDropDown = it
+                        chosenDropdown = it
                     }
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
@@ -138,7 +141,7 @@ Image(
                 modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ){
-                    RuangKelas.kelas.forEach( data ->
+                    RuangKelas.kelas.forEach{ data ->
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         RadioButton(
                             selected = pilihanKelas == data,
@@ -147,7 +150,7 @@ Image(
                         Text(data)
                     }
                 }
-                )
+            }
                 Spacer(modifier = Modifier.padding(8.dp))
                 HorizontalDivider()
                 Spacer(modifier = Modifier.padding(8.dp))
