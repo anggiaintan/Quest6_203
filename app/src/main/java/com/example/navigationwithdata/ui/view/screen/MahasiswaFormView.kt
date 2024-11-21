@@ -55,9 +55,11 @@ fun MahasiswaFormView(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = colorResource(id = R.color.primary))
+            .background(color = colorResource(id = R.color.primary)),
+        horizontalAlignment = Alignment.CenterHorizontally
     )
     {
+        Spacer(modifier = Modifier.padding(16.dp))
         Row(
             modifier = Modifier.padding(25.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -83,6 +85,7 @@ fun MahasiswaFormView(
                 )
             }
         }
+        Spacer(modifier = Modifier.padding(top = 16.dp))
         Box(
             modifier = Modifier
                 .fillMaxSize()
