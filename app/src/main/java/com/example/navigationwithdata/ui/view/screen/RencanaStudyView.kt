@@ -40,6 +40,7 @@ import com.example.navigationwithdata.R
 import com.example.navigationwithdata.data.MataKuliah
 import com.example.navigationwithdata.data.RuangKelas
 import com.example.navigationwithdata.model.Mahasiswa
+import com.example.navigationwithdata.navigation.Halaman
 import com.example.navigationwithdata.ui.view.widget.DynamicSelectTextField
 
 @Composable
@@ -174,7 +175,8 @@ Image(
                     Button(onClick = {onBackButtonClicked()}){
                         Text(text = "Kembali")
                     }
-                    Button(onClick = {onSubmitButtonClicked(listData)}, enabled = checked){
+                    Button(onClick = {onSubmitButtonClicked(listData)
+                                     navController.navigate(Halaman.Tampil.name)}, enabled = checked){
                         Text(text = "Lanjut")
                     }
                 }
